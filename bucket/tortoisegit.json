@@ -10,6 +10,7 @@
         "Add TortoiseGit as a context menu option, run '$dir\\install-context.reg'",
         "Before uninstalling TortoiseGit, run '$dir\\uninstall-context.reg' "
     ],
+    "depends": "sudo",
     "architecture": {
         "64bit": {
             "url": "https://download.tortoisegit.org/tgit/2.15.0.0/TortoiseGit-2.15.0.0-64bit.msi",
@@ -46,7 +47,7 @@
         "}"
     ],
     "pre_uninstall": [
-        "if ($cmd -eq 'uninstall') { reg import \"$dir\\uninstall-context.reg\" }",
+        "if ($cmd -eq 'uninstall') { sudo reg import \"$dir\\uninstall-context.reg\" }",
         "Stop-Process -Name 'pageant' -ErrorAction SilentlyContinue",
         "Stop-Process -Name 'explorer' -Force",
         "Start-Sleep -Seconds 2"
