@@ -47,7 +47,9 @@
     ],
     "pre_uninstall": [
         "if ($cmd -eq 'uninstall') { reg import \"$dir\\uninstall-context.reg\" }",
-        "Stop-Process -Name 'pageant' -ErrorAction SilentlyContinue"
+        "Stop-Process -Name 'pageant' -ErrorAction SilentlyContinue",
+        "Stop-Process -Name 'explorer' -Force",
+        "Start-Sleep -Seconds 2"
     ],
     "bin": [
         "bin\\TortoiseGitUDiff.exe",
