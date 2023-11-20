@@ -1,0 +1,92 @@
+{
+    "##": "tortoisegit",
+    "version": "2.15.0.0",
+    "description": "Windows Shell Interface to Git based on TortoiseSVN.",
+    "homepage": "https://tortoisegit.org",
+    "license": {
+        "identifier": "GPL-2.0-only"
+    },
+    "notes": [
+        "Add TortoiseGit as a context menu option, run '$dir\\install-context.reg'",
+        "Before uninstalling TortoiseGit, run '$dir\\uninstall-context.reg' "
+    ],
+    "architecture": {
+        "64bit": {
+            "url": "https://download.tortoisegit.org/tgit/2.15.0.0/TortoiseGit-2.15.0.0-64bit.msi",
+            "hash": "481359c8773e1d098b98156ff44f0dd50304e97a866d44e6594c709ec5a61377"
+        },
+        "32bit": {
+            "url": "https://download.tortoisegit.org/tgit/2.15.0.0/TortoiseGit-2.15.0.0-32bit.msi",
+            "hash": "1e818fd4793b4e2130c6ec33b8803006b3b9949d8c2b025e8908f2565b257105"
+        },
+        "arm64": {
+            "url": "https://download.tortoisegit.org/tgit/2.15.0.0/TortoiseGit-2.15.0.0-arm64.msi",
+            "hash": "d8c0f64176b5be9e7b47f1859a7a1ac1029fdc96ede783c146e52e44a5536f35"
+        }
+    },
+    "extract_dir": "Program Files\\TortoiseGit",
+    "post_install": [
+        "$path = 'HKCU:\\Software\\TortoiseGit'",
+        "if (!(Test-path \"$path\")) {",
+        "    New-Item $path | Out-Null",
+        "    New-ItemProperty -Path $path -Name 'VersionCheck' -PropertyType DWord -Value 0 -Force | Out-Null",
+        "    New-ItemProperty -Path $path -Name 'MsysGit' -PropertyType String -Value \"$env:GIT_INSTALL_ROOT\\bin\" -Force | Out-Null",
+        "}",
+        "$bucketdir = Find-BucketDirectory -Name $bucket",
+        "$dirpath = \"$dir\".Replace('\\', '\\\\')",
+        "'install-tools', 'install-context', 'uninstall-context' | ForEach-Object {",
+        "  if (Test-Path \"$bucketdir\\..\\scripts\\tortoisegit\\$_.reg.in\") {",
+        "    $content = Get-Content \"$bucketdir\\..\\scripts\\tortoisegit\\$_.reg.in\"",
+        "    $content = $content.Replace('%TGITHOME%', $dirpath)",
+        "    if ($global) {",
+        "      $content = $content.Replace('HKEY_CURRENT_USER', 'HKEY_LOCAL_MACHINE')",
+        "    }",
+        "    $content | Set-Content -Path \"$dir\\$_.reg\"",
+        "  }",
+        "}"
+    ],
+    "pre_uninstall": [
+        "if ($cmd -eq 'uninstall') { reg import \"$dir\\uninstall-context.reg\" }",
+        "Stop-Process -Name 'pageant' -ErrorAction SilentlyContinue"
+    ],
+    "bin": [
+        "bin\\TortoiseGitUDiff.exe",
+        "bin\\TortoisePlink.exe"
+    ],
+    "shortcuts": [
+        [
+            "bin\\TortoiseGitMerge.exe",
+            "TortoiseGit Merge"
+        ],
+        [
+            "bin\\TortoiseGitBlame.exe",
+            "TortoiseGit Blame"
+        ],
+        [
+            "bin\\TortoiseGitIDiff.exe",
+            "TortoiseGit Diff"
+        ],
+        [
+            "bin\\TortoiseGitProc.exe",
+            "TortoiseGit Settings",
+            "/command:settings"
+        ]
+    ],
+    "checkver": {
+        "url": "https://download.tortoisegit.org/tgit/",
+        "regex": "TortoiseGit is: <a href=/tgit/([\\d\\.]+)/"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://download.tortoisegit.org/tgit/$version/TortoiseGit-$version-64bit.msi"
+            },
+            "32bit": {
+                "url": "https://download.tortoisegit.org/tgit/$version/TortoiseGit-$version-32bit.msi"
+            },
+            "arm64": {
+                "url": "https://download.tortoisegit.org/tgit/$version/TortoiseGit-$version-arm64.msi"
+            }
+        }
+    }
+}
