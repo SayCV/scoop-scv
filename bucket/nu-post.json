@@ -1,0 +1,24 @@
+{
+    "##": "nu-post",
+    "version": "0.20231121",
+    "description": "Portable mode for Nushell, A modern shell written in Rust",
+    "homepage": "https://github.com/nushell/nushell",
+    "license": "MIT",
+    "notes": "Portable mode for Nushell",
+    "depends": ["sudo", "nu"],
+    "url": "https://github.com/excitoon/empty/releases/download/empty-1.0.7/empty-1.0.7.zip",
+    "hash": "8739c76e681f900923b900c9df0ef75cf421d39cabb54650c4b9ad19b6a76d85",
+    "post_install": [
+        "info '[Portable Mode]: Linking user data ...'",
+        "$_dir = \"$(appdir nu $global)\\current\".Replace('/', '\\')",
+        "ensure \"$dir\\data\\AppData\" | Out-Null",
+        "$fold = \"$env:AppData\\nushell\"",
+        "if (Test-Path $fold) {",
+        "    sudo cmd /c rmdir /q /s $fold",
+        "}",
+        "$link = New-Item -ItemType SymbolicLink -Path \"$fold\" -Value \"$dir\\data\\AppData\"",
+        "$link | Select-Object FullName, LinkType, Target",
+        "info 'Done.'"
+    ],
+    "persist": "data"
+}
