@@ -35,7 +35,7 @@
         "if (Test-Path $fold) {",
         "    sudo cmd /c rmdir /q /s $fold",
         "}",
-        "$link = New-Item -ItemType SymbolicLink -Path \"$fold\" -Value \"$dir\\data\\.cache\"",
+        "$link = sudo New-Item -ItemType SymbolicLink -Path \"$fold\" -Value \"$dir\\data\\.cache\"",
         "$link | Select-Object FullName, LinkType, Target",
         "",
         "info '[Customization]: Creating profile/starship.lua ...'",
