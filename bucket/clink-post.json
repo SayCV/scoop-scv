@@ -1,0 +1,43 @@
+{
+    "##": "clink-post",
+    "version": "0.20231121",
+    "description": "Helper utils for clink, Powerful Bash-style command line editing for cmd.exe",
+    "homepage": "https://chrisant996.github.io/clink",
+    "license": "GPL-3.0-only",
+    "notes": "Helper utils for clink",
+    "depends": ["sudo", "clink"],
+    "url": "https://github.com/excitoon/empty/releases/download/empty-1.0.7/empty-1.0.7.zip",
+    "hash": "8739c76e681f900923b900c9df0ef75cf421d39cabb54650c4b9ad19b6a76d85",
+    "pre_install": [
+        "$current_dir = if (get_config NO_JUNCTIONS) { $dir } else { \"$(appdir $app $global)\\current\" }",
+        "$unix_current_dir = \"$current_dir\".Replace('\\', '/')",
+        "",
+        "info '[Portable Mode]: Creating batch/cmd_by_clink_portable.cmd...'",
+        "$ofile = \"$dir\\cmd_by_clink_portable.cmd\"",
+        "$cont = @(",
+        "    \"@chcp 65001 >nul&@set LANG=zh_CN\"",
+        "    \"@call doskey.exe /macrofile=$unix_current_dir/profile/user_aliases.cmd\"",
+        "    \"@cmd /s /k clink inject --quiet --profile $unix_current_dir/profile\"",
+        ")",
+        "Set-Content \"$ofile\" ($cont -join \"`r`n\") -Encoding ASCII",
+        "",
+        "info 'Done.'"
+    ],
+    "post_install": [
+        "info '[Portable Mode]: Creating profile/clink_start.cmd...'",
+        "ensure \"$dir\\profile\" | Out-Null",
+        "$ofile = \"$dir\\profile\\clink_start.cmd\"",
+        "Set-Content \"$ofile\" \"\" -Encoding ASCII",
+        "",
+        "info '[Portable Mode]: Creating profile/user_aliases.cmd...'",
+        "ensure \"$dir\\profile\" | Out-Null",
+        "$ofile = \"$dir\\profile\\user_aliases.cmd\"",
+        "Set-Content \"$ofile\" \"\" -Encoding ASCII",
+        "",
+        "info 'Done.'"
+    ],
+    "bin": [
+        "cmd_by_clink_portable.cmd"
+    ],
+    "persist": "profile"
+}
