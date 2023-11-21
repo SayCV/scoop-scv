@@ -42,6 +42,16 @@
         "}",
         "$link = sudo New-Item -ItemType SymbolicLink -Path \"$file\" -Value \"$dir\\profile\\.condarc\"",
         "$link | Select-Object FullName, LinkType, Target",
+        "",
+        "info '[Portable Mode]: Linking ~/.condarc ...'",
+        "ensure \"$env:USERPROFILE\" | Out-Null",
+        "$file = \"$env:USERPROFILE\\.condarc\"",
+        "if (Test-Path $file) {",
+        "    Remove-Item \"$file\" -Force | Out-Null",
+        "}",
+        "$link = sudo New-Item -ItemType SymbolicLink -Path \"$file\" -Value \"$dir\\profile\\.condarc\"",
+        "$link | Select-Object FullName, LinkType, Target",
+        "",
         "info 'Done.'"
     ],
     "persist": "profile"
