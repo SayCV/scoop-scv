@@ -16,7 +16,7 @@
         "if (Test-Path $fold) {",
         "    sudo cmd /c rmdir /q /s $fold",
         "}",
-        "$link = New-Item -ItemType SymbolicLink -Path \"$fold\" -Value \"$dir\\data\\AppData\"",
+        "$link = sudo New-Item -ItemType SymbolicLink -Path \"$fold\" -Value \"$dir\\data\\AppData\"",
         "$link | Select-Object FullName, LinkType, Target",
         "info 'Done.'"
     ],
