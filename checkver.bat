@@ -22,5 +22,5 @@ if not %errcnt% == 0 (
 )
 
 echo,
-delay 10 2>nul || ping -n 10 127.0.0.1>nul
+timeout /t 10 2>NUL || DELAY 10 2>NUL || ping -n 10 127.0.0.1>NUL
 EXIT 0
