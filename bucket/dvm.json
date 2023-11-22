@@ -1,0 +1,22 @@
+{
+    "##": "dvm",
+    "version": "1.8.7",
+    "description": "A deno.js version management utility for Windows.",
+    "homepage": "https://github.com/justjavac/dvm",
+    "license": "MIT",
+    "notes": "You'll need to restart powershell/cmd to have it reload Environment Variables so dvm will work correctly",
+    "url": "https://github.com/justjavac/dvm/releases/download/v1.8.7/dvm-x86_64-pc-windows-msvc.zip",
+    "hash": "a14c2882a7d5c321eabef09b8108857959a8f5ac151d4a9f21314a2dbf5fcebd",
+    "bin": "dvm.exe",
+    "env_add_path": ".dvm\\bin",
+    "env_set": {
+        "##": "https://nugine.github.io/deno-manual-cn/getting_started/setup_your_environment.html",
+        "DVM_DIR": "$dir\\.dvm",
+        "DENO_DIR": "$dir\\.dvm\\cache"
+    },
+    "persist": ".dvm",
+    "checkver": "github",
+    "autoupdate": {
+        "url": "https://github.com/justjavac/dvm/releases/download/v$version/dvm-x86_64-pc-windows-msvc.zip"
+    }
+}
