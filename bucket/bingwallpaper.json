@@ -1,0 +1,62 @@
+{
+    "##": "bingwallpaper",
+    "version": "2.0.0.3",
+    "description": "Bing Wallpaper. Bring your desktop to life with a new background each day",
+    "homepage": "https://www.microsoft.com/en-us/download/details.aspx?id=101202",
+    "license": "Freeware",
+    "notes": "Bing Wallpaper",
+    "depends": ["sudo"],
+    "url": "https://download.microsoft.com/download/8/1/e/81e79f82-9ba4-494e-b3cf-df20679a4856/Bing_W015/BingWallpaper.exe#/dl.7z",
+    "hash": "2e884dffe365f4da2c5b23b19d9d718ce886e9c2142dbfa5f87dcbdef08d4416",
+    "extract_to": "installer",
+    "installer": {
+        "script": [
+            "info '[Portable Mode]: Extracting installer ...'",
+            "Expand-MsiArchive \"$dir\\installer\\BWCInstaller.msi\" -DestinationPath \"$dir\" -ExtractDir 'Microsoft\\BingWallpaperApp'",
+            "Remove-Item \"$dir\\installer\" -Recurse -Force | Out-Null",
+            ""
+        ]
+    },
+    "post_install": [
+        "ensure \"$dir\\data\\Local\" | Out-Null",
+        "$_prog_name = \"Bing Wallpaper\"",
+        "$CommonDesktopPath = [Environment]::GetFolderPath(\"CommonDesktopDirectory\")",
+        "if (Test-Path \"$CommonDesktopPath\\$_prog_name.lnk\") {Remove-Item \"$CommonDesktopPath\\$_prog_name.lnk\" -Force}",
+        "",
+        "$fold = \"$env:LocalAppData\\Microsoft\\BingWallpaperApp\"",
+        "if (Test-Path $fold) {",
+        "    sudo cmd /c rmdir /q /s $fold",
+        "}",
+        "sudo cmd /c mklink /d \"$fold\" \"$dir\\data\\Local\"",
+        "info '[Install]: done.'",
+        "",
+        "Start-Process \"$dir\\BingWallpaperApp.exe\"",
+        ""
+    ],
+    "pre_uninstall": [
+        "info \"[Uninstall]: Closing BingWallpaperApp ...\"",
+        "Stop-Process -Name 'BingWallpaperApp' -ErrorAction SilentlyContinue",
+        "Wait-Process -Name 'BingWallpaperApp' -ErrorAction SilentlyContinue -Timeout 10",
+        ""
+    ],
+    "uninstaller": {
+        "script": [
+            "",
+            "sudo Remove-ItemProperty -Path \"HKLM:\\Software\\WOW6432Node\\Microsoft\\Windows\\CurrentVersion\\Run\" -Name \"BingWallpaperApp\" -ErrorAction Ignore | Out-Null",
+            "sudo Remove-ItemProperty -Path \"HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Run\" -Name \"BingWallpaperApp\" -ErrorAction Ignore | Out-Null",
+            "",
+            "Remove-Item \"$env:LocalAppData\\Microsoft\\BingWallpaperApp\" -Recurse -Force | Out-Null",
+            "info '[Uninstall]: done.'",
+            ""
+        ]
+    },
+    "shortcuts": [
+        [
+            "BingWallpaperApp.exe",
+            "Bing Wallpaper"
+        ]
+    ],
+    "persist": [
+        "data"
+    ]
+}
