@@ -11,13 +11,12 @@
     "post_install": [
         "info '[Portable Mode]: Linking user data ...'",
         "$_dir = \"$(appdir nu $global)\\current\".Replace('/', '\\')",
-        "ensure \"$dir\\data\\AppData\" | Out-Null",
+        "ensure \"$dir\\data\\Roaming\" | Out-Null",
         "$fold = \"$env:AppData\\nushell\"",
         "if (Test-Path $fold) {",
         "    sudo cmd /c rmdir /q /s $fold",
         "}",
-        "$link = sudo New-Item -ItemType SymbolicLink -Path \"$fold\" -Value \"$dir\\data\\AppData\"",
-        "$link | Select-Object FullName, LinkType, Target",
+        "sudo cmd /c mklink /d \"$fold\" \"$dir\\data\\Roaming\"",
         "info 'Done.'"
     ],
     "persist": "data"
