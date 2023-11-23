@@ -10,7 +10,6 @@
     "bin": "dvm.exe",
     "env_add_path": ".dvm\\bin",
     "env_set": {
-        "##": "https://nugine.github.io/deno-manual-cn/getting_started/setup_your_environment.html",
         "DVM_DIR": "$dir\\.dvm",
         "DENO_DIR": "$dir\\.dvm\\cache"
     },
