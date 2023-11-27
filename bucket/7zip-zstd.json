@@ -15,15 +15,18 @@
             "hash": "cc1b8c360656df516684c61da2b23e2185e27c23d255fd3db6a792373dcc1ba3"
         }
     },
+    "installer": {
+        "script": [
+            "Stop-Process -Name 'explorer' -Force",
+            "Start-Sleep -Seconds 2",
+            "scoop config use_external_7zip true",
+            "scoop uninstall 7zip",
+            "Remove-Item $scoopdir\\apps\\7zip -Force -Recurse -ErrorAction SilentlyContinue",
+            "mkdir $scoopdir\\apps\\7zip -ErrorAction SilentlyContinue",
+            "New-Item -Type Junction -Path $scoopdir\\apps\\7zip -Target $dir\\..\\ | Out-Null"
+        ]
+    },
     "post_install": [
-        "Stop-Process -Name 'explorer' -Force",
-        "Start-Sleep -Seconds 2",
-        "scoop config use_external_7zip true",
-        "scoop uninstall 7zip",
-        "Remove-Item $scoopdir\\apps\\7zip -Force -Recurse -ErrorAction SilentlyContinue",
-        "mkdir $scoopdir\\apps\\7zip -ErrorAction SilentlyContinue",
-        "New-Item -Type Junction -Path $scoopdir\\apps\\7zip -Target $dir\\..\\ | Out-Null",
-        "",
         "$bucketdir = Find-BucketDirectory -Name $bucket",
         "$7zip_root = \"$dir\".Replace('\\', '\\\\')",
         "'install-context.reg', 'uninstall-context.reg' | ForEach-Object {",
