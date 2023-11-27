@@ -1,0 +1,58 @@
+{
+    "##": "7zip",
+    "version": "v22.01-v1.5.5-R3",
+    "description": "A multi-format file archiver with high compression ratios",
+    "homepage": "https://github.com/mcmilk/7-Zip-zstd",
+    "license": "LGPL-2.1-or-later",
+    "notes": "Add 7-Zip as a context menu option by running: \"$dir\\install-context.reg\"",
+    "architecture": {
+        "64bit": {
+            "url": "https://github.com/mcmilk/7-Zip-zstd/releases/download/v22.01-v1.5.5-R3/7z22.01-zstd-x64.exe#/dl.7z",
+            "hash": "d542d78397bbed8e77c221f36cad461a0d83f1263b993a7048e81df40f403fb8"
+        },
+        "32bit": {
+            "url": "https://github.com/mcmilk/7-Zip-zstd/releases/download/v22.01-v1.5.5-R3/7z22.01-zstd-x32.exe#/dl.7z",
+            "hash": "cc1b8c360656df516684c61da2b23e2185e27c23d255fd3db6a792373dcc1ba3"
+        }
+    },
+    "post_install": [
+        "$7zip_root = \"$dir\".Replace('\\', '\\\\')",
+        "'install-context.reg', 'uninstall-context.reg' | ForEach-Object {",
+        "    $content = Get-Content \"$bucketsdir\\main\\scripts\\7-zip\\$_.in\"",
+        "    $content = $content.Replace('$7zip_root', $7zip_root)",
+        "    if ($global) {",
+        "       $content = $content.Replace('HKEY_CURRENT_USER', 'HKEY_LOCAL_MACHINE')",
+        "    }",
+        "    Set-Content \"$dir\\$_\" $content -Encoding Ascii",
+        "}"
+    ],
+    "bin": [
+        "7z.exe",
+        "7zFM.exe",
+        "7zG.exe"
+    ],
+    "shortcuts": [
+        [
+            "7zFM.exe",
+            "7-Zip"
+        ]
+    ],
+    "persist": [
+        "Codecs",
+        "Formats"
+    ],
+    "checkver": {
+        "url": "https://api.github.com/repos/mcmilk/7-Zip-zstd/releases",
+        "jsonpath": "$[0].tag_name"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://github.com/mcmilk/7-Zip-zstd/releases/download/$version/7z$matchHead-zstd-x64.exe#/dl.7z"
+            },
+            "32bit": {
+                "url": "https://github.com/mcmilk/7-Zip-zstd/releases/download/$version/7z$matchHead-zstd-x32.exe#/dl.7z"
+            }
+        }
+    }
+}
