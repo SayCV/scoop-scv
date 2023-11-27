@@ -16,6 +16,14 @@
         }
     },
     "post_install": [
+        "Stop-Process -Name 'explorer' -Force",
+        "Start-Sleep -Seconds 2",
+        "scoop config use_external_7zip true",
+        "scoop uninstall 7zip",
+        "Remove-Item $scoopdir\\apps\\7zip -Force -Recurse -ErrorAction SilentlyContinue",
+        "mkdir $scoopdir\\apps\\7zip -ErrorAction SilentlyContinue",
+        "New-Item -Type Junction -Path $scoopdir\\apps\\7zip -Target $dir\\..\\ | Out-Null",
+        "",
         "$bucketdir = Find-BucketDirectory -Name $bucket",
         "$7zip_root = \"$dir\".Replace('\\', '\\\\')",
         "'install-context.reg', 'uninstall-context.reg' | ForEach-Object {",
@@ -26,6 +34,15 @@
         "    }",
         "    Set-Content \"$dir\\$_\" $content -Encoding Ascii",
         "}"
+    ],
+    "pre_uninstall": [
+        "if ($cmd -eq 'uninstall') { sudo reg import \"$dir\\uninstall-context.reg\" }",
+        "Stop-Process -Name 'explorer' -Force",
+        "Start-Sleep -Seconds 2"
+    ],
+    "post_uninstall": [
+        "scoop config use_external_7zip false",
+        "scoop install 7zip"
     ],
     "bin": [
         "7z.exe",
