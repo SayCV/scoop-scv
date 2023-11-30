@@ -2,11 +2,13 @@
 @echo off&SetLocal EnableDelayedExpansion
 cd /d "%~dp0"
 
-if not exist apps.ini cd.>apps.ini&echo :: Please set update apps in apps.ini&PAUSE&EXIT 0
+if exist .set.proxy.bat CALL .set.proxy.bat
+
+if not exist .apps.ini cd.>.apps.ini&echo :: Please set update apps in .apps.ini&PAUSE&EXIT 0
 
 @set /a tee=0
 @set /a errcnt=0
-@if "xy" == "xy" @for /f "tokens=1*" %%I in (apps.ini) do @(
+@if "xy" == "xy" @for /f "tokens=1*" %%I in (.apps.ini) do @(
     set /a tee+=1
     if not "x%%I" == "x" if "xy" == "xy" (
         echo :: Updating %%I

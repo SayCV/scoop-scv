@@ -4,5 +4,6 @@
 page.html
 checkver-*.html
 
-apps.ini
-*.reg
+.apps.ini
+.*.bat
+*.reg.in
