@@ -9,6 +9,6 @@ Personal bucket for [Scoop](https://scoop.sh), the Windows command-line installe
 To add this bucket to scoop, run the following:
 
 ```batch
-scoop bucket add scv https://github.com/SayCV/scoop-scv
-scoop install scv/<manifestname>
+scoop bucket add 00scv https://github.com/SayCV/scoop-scv
+scoop install <manifestname>
 ```
