@@ -1,0 +1,12 @@
+{
+    "##": "sejda-console",
+    "version": "3.2.85",
+    "description": "An extendible and configurable PDF manipulation layer library written in java.",
+    "homepage": "http://www.sejda.org",
+    "license": "AGPL-3.0-or-later",
+    "notes": "https://github.com/torakiki/sejda",
+    "url": "https://github.com/torakiki/sejda/releases/download/v3.2.85/sejda-console-3.2.85-bin.zip",
+    "hash": "a2380aff1904103317a92b61a2008e2018184de0a7ed58e2516bd1b3818a48bf",
+    "extract_dir": "sejda-console-3.2.85",
+    "bin": "bin\\sejda-console.bat"
+}
