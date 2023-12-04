@@ -1,0 +1,17 @@
+{
+    "version": "2.13",
+    "description": "Universal markup converter",
+    "homepage": "https://pandoc.org",
+    "license": "GPL-2.0-or-later",
+    "suggest": {
+        "MiKTeX": "latex"
+    },
+    "architecture": {
+        "64bit": {
+            "url": "https://github.com/jgm/pandoc/releases/download/2.13/pandoc-2.13-windows-x86_64.zip",
+            "hash": "c7a0523464aee871ee8ceb387e87dd50ac8bf61974f50ec45946df34bc7f7dc6"
+        }
+    },
+    "extract_dir": "pandoc-2.13",
+    "bin": [["pandoc.exe", "pandoc2"]]
+}
