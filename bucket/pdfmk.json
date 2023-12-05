@@ -1,14 +1,14 @@
 {
     "##": "pdfmk",
-    "version": "r51.751fd33-1",
+    "version": "r52.f890e40-1",
     "description": "A deno CLI to make pdf from markdown",
     "homepage": "https://github.com/SayCV/pdfmk",
     "license": "MIT",
     "notes": "Usage: pdfmk test.md test.pdf.",
     "architecture": {
         "64bit": {
-            "url": "https://github.com/SayCV/pdfmk/releases/download/r51.751fd33-1/mingw-w64-x86_64-pdfmk-r51.751fd33-1-any.pkg.tar.zst",
-            "hash": "366fad868582259abeea30e24bdd7824b214759a054073b7262b4333fea8a603"
+            "url": "https://github.com/SayCV/pdfmk/releases/download/r52.f890e40-1/mingw-w64-x86_64-pdfmk-r52.f890e40-1-any.pkg.tar.zst",
+            "hash": "6d7c020c0c7759a941b3e5039174ff9139d81bf668e3e7e061583fd9bd144ecd"
         }
     },
     "extract_dir": "mingw64",
