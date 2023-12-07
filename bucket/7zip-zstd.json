@@ -5,6 +5,7 @@
     "homepage": "https://github.com/mcmilk/7-Zip-zstd",
     "license": "LGPL-2.1-or-later",
     "notes": "Add 7-Zip as a context menu option by running: \"$dir\\install-context.reg\"",
+    "depends": ["7zip"],
     "architecture": {
         "64bit": {
             "url": "https://github.com/mcmilk/7-Zip-zstd/releases/download/v22.01-v1.5.5-R3/7z22.01-zstd-x64.exe#/dl.7z",
@@ -22,7 +23,7 @@
             "scoop config use_external_7zip true",
             "scoop uninstall 7zip",
             "Remove-Item $scoopdir\\apps\\7zip -Force -Recurse -ErrorAction SilentlyContinue",
-            "mkdir $scoopdir\\apps\\7zip -ErrorAction SilentlyContinue",
+            "rmdir $scoopdir\\apps\\7zip -ErrorAction SilentlyContinue",
             "New-Item -Type Junction -Path $scoopdir\\apps\\7zip -Target $dir\\..\\ | Out-Null"
         ]
     },
@@ -49,6 +50,7 @@
     ],
     "bin": [
         "7z.exe",
+        "7za.exe",
         "7zFM.exe",
         "7zG.exe"
     ],
