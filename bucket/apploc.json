@@ -1,0 +1,12 @@
+{
+    "##": "apploc",
+    "version": "0.19990621",
+    "description": "AppLocale is a tool for Windows XP and Windows Server 2003 by Microsoft.",
+    "homepage": "https://handwiki.org/wiki/AppLocale",
+    "license": "Trialware",
+    "notes": "https://handwiki.org/wiki/AppLocale",
+    "url": "https://web.archive.org/web/20150110171635if_/http://download.microsoft.com/download/5/6/8/568a8caf-29c4-43ec-a10f-97730f26977e/apploc.msi",
+    "hash": "907d1d12caef3ec6540371a30ad1e2bd40226484e57833f1f6a1cf15a195a72a",
+    "extract_dir": "Windows Folder\\AppPatch",
+    "bin": "AppLoc.exe"
+}
