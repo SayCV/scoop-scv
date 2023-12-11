@@ -1,0 +1,23 @@
+{
+    "##": "gcc-nuclei-riscv64-unknown-elf",
+    "version": "2023.10",
+    "description": "Pre-built GNU toolchain for Nuclei RISC-V Family processors",
+    "homepage": "https://nucleisys.com/download.php",
+    "license": "GPL-3.0-only",
+    "notes": "Nuclei RISC-V Toolchain: https://doc.nucleisys.com/nuclei_sdk/quickstart.html#quickstart-setup-tools-env-windows",
+    "url": "https://nucleisys.com/upload/files/toochain/gcc/nuclei_riscv_newlibc_prebuilt_win32_2023.10.zip",
+    "hash": "19e4a5308c9358341ddadd95e14b9a480cb35e25f61e753442b832ea7c097701",
+    "extract_dir": "gcc",
+    "env_add_path": "bin",
+    "env_set": {
+        "GCC_NUCLEI_RISCV_INSTALL_ROOT": "$dir"
+    },
+    "checkver": {
+        "url": "https://nucleisys.com/download.php",
+        "regex": "toochain/gcc/nuclei_riscv_newlibc_prebuilt_win32_([\\d.-]+).zip"
+    },
+    "autoupdate": {
+        "url": "https://nucleisys.com/upload/files/toochain/gcc/nuclei_riscv_newlibc_prebuilt_win32_$version.zip",
+        "extract_dir": "gcc"
+    }
+}
