@@ -1,0 +1,29 @@
+{
+    "##": "nucleistudio",
+    "version": "2023.10",
+    "description": "Nuclei Studio IDE",
+    "homepage": "https://nucleisys.com/download.php",
+    "license": "Freeware",
+    "notes": "Nuclei Studio IDE: https://doc.nucleisys.com/nuclei_sdk/quickstart.html#quickstart-setup-tools-env-windows",
+    "url": "https://nucleisys.com/upload/files/nucleistudio/NucleiStudio_IDE_202310-win64.zip",
+    "hash": "ebff3ea715bddddf0ff12d8fea2e5656229f3584cc19bc9eeb2b5299e7a501f7",
+    "extract_dir": "",
+    "env_set": {
+        "NUCLEISTUDIO_INSTALL_ROOT": "$dir"
+    },
+    "shortcuts": [
+        [
+            "NucleiStudio\\NucleiStudio.exe",
+            "Nuclei Studio IDE"
+        ]
+    ],
+    "checkver": {
+        "url": "https://nucleisys.com/download.php",
+        "regex": "nucleistudio/NucleiStudio_IDE_(?<year>[\\d]{4})(?<month>[\\d]{2})-win64.zip",
+        "replace": "$matchYear.$matchMonth"
+    },
+    "autoupdate": {
+        "url": "https://nucleisys.com/upload/files/nucleistudio/NucleiStudio_IDE_$matchYear$matchMonth-win64.zip",
+        "extract_dir": ""
+    }
+}
