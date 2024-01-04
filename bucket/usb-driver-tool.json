@@ -5,13 +5,13 @@
     "homepage": "https://visualgdb.com/UsbDriverTool/",
     "license": "Freeware",
     "notes": "This tool simplifies installation of the USB drivers for Libusb and FTDI D2XX drivers for your devices. ",
-    "url": "https://sysprogs.com/getfile/1372/UsbDriverTool-2.1.exe#/usb-driver-tool.exe",
+    "url": "https://sysprogs.com/getfile/1372/UsbDriverTool-2.1.exe#/dl.7z",
     "hash": "555c1bb11779d9e2c26fe3189f17de0aa4ba278780f6b05f5c47114a5495970a",
-    "extract_dir": "",
-    "bin": "usb-driver-tool.exe",
+    "extract_dir": "UsbDriverTool",
+    "bin": "UsbDriverTool.exe",
     "shortcuts": [
         [
-            "usb-driver-tool.exe",
+            "UsbDriverTool.exe",
             "UsbDriverTool"
         ]
     ],
