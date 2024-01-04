@@ -1,0 +1,34 @@
+{
+    "##": "zadig",
+    "version": "2.8",
+    "description": "Windows Driver Installer library for USB devices",
+    "homepage": "https://zadig.akeo.ie/",
+    "license": "GPL-3.0-or-later",
+    "notes": [
+        "It can be especially useful for cases where:",
+        "     you want to access a device using a libusb-based application",
+        "     you want to upgrade a generic USB driver",
+        "     you want to access a device using WinUSB",
+        "System Requirements:",
+        "     Windows 7 or later.",
+        "     Windows XP and Windows Vista are NO LONGER SUPPORTED."
+    ],
+    "url": "https://github.com/pbatard/libwdi/releases/download/v1.5.0/zadig-2.8.exe",
+    "hash": "20e4cd7b6768718848f603fe928f36e207dc5ca96fc9db7085d841410d0abae4",
+    "extract_dir": "",
+    "bin": "zadig.exe",
+    "shortcuts": [
+        [
+            "zadig.exe",
+            "Zadig"
+        ]
+    ],
+    "checkver": {
+        "url": "https://api.github.com/repos/pbatard/libwdi/releases",
+        "jsonpath": "$.assets[0].browser_download_url",
+        "regex": "v(?<tag>[\\d.]+)/zadig-(?<version>[\\d.]+[a-z]?)\\.exe"
+    },
+    "autoupdate": {
+        "url": "https://github.com/pbatard/libwdi/releases/download/v$matchTag/zadig-$version.exe"
+    }
+}
