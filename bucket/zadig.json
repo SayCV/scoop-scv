@@ -13,7 +13,7 @@
         "     Windows 7 or later.",
         "     Windows XP and Windows Vista are NO LONGER SUPPORTED."
     ],
-    "url": "https://github.com/pbatard/libwdi/releases/download/v1.5.0/zadig-2.8.exe",
+    "url": "https://github.com/pbatard/libwdi/releases/download/v1.5.0/zadig-2.8.exe#/zadig.exe",
     "hash": "20e4cd7b6768718848f603fe928f36e207dc5ca96fc9db7085d841410d0abae4",
     "extract_dir": "",
     "bin": "zadig.exe",
@@ -29,6 +29,6 @@
         "regex": "v(?<tag>[\\d.]+)/zadig-(?<version>[\\d.]+[a-z]?)\\.exe"
     },
     "autoupdate": {
-        "url": "https://github.com/pbatard/libwdi/releases/download/v$matchTag/zadig-$version.exe"
+        "url": "https://github.com/pbatard/libwdi/releases/download/v$matchTag/zadig-$version.exe#/zadig.exe"
     }
 }
